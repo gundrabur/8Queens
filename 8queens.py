@@ -80,24 +80,28 @@ def plot_solution(solution):
     plt.show()
 
 if __name__ == "__main__":
-    num_queens = 8
+    num_queens = 12
+    # Define the maximum number of threads
+    max_threads = multiprocessing.cpu_count()
     solver = EightQueens(num_queens)
     
     start_time = time.time()  # Start timing
 
-    # Solve the problem in parallel using multiprocessing
-    with multiprocessing.Pool() as pool:
-        solutions = pool.map(solver.solve, range(num_queens))
+    # Solve the problem in parallel using multiprocessing with a limited number of threads
+    with multiprocessing.Pool(processes=max_threads) as pool:
+        solutions = pool.map(solver.solve, range(num_queens))    
+
 
     end_time = time.time()  # End timing
     execution_time = end_time - start_time
 
     # Flatten the list of solutions
     flattened_solutions = [sol for sublist in solutions for sol in sublist]
+    print("Number of CPU cores:", max_threads)
     print("Number of solutions:", len(flattened_solutions))
     print("Execution time:", execution_time, "seconds")
     
     # Print and plot each solution
-    for solution in flattened_solutions:
-        print(solution)
+    #for solution in flattened_solutions:
+        #print(solution)
         #plot_solution(solution)
