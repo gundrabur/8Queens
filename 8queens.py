@@ -82,6 +82,8 @@ def plot_solution(solution):
 if __name__ == "__main__":
     num_queens = 12
     # Define the maximum number of threads
+    # set to the numer of CPU cores, you may change that to a fixed number here
+    #max_threads = 1
     max_threads = multiprocessing.cpu_count()
     solver = EightQueens(num_queens)
     
