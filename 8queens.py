@@ -6,6 +6,15 @@ class EightQueens:
         self.num_queens = num_queens
 
     def is_safe(self, board, row, col):
+        """
+        Checks if placing a queen at position (row, col) is safe.
+        Args:
+            board (list): Current state of the chessboard.
+            row (int): Row index to check.
+            col (int): Column index to check.
+        Returns:
+            bool: True if it's safe to place a queen, False otherwise.
+        """
         for i in range(row):
             if board[i] == col or \
                board[i] - i == col - row or \
@@ -14,6 +23,13 @@ class EightQueens:
         return True
 
     def solve(self, start_col):
+        """
+        Finds solutions for the 8 queens problem starting from the specified column.
+        Args:
+            start_col (int): Starting column index for the first queen.
+        Returns:
+            list: List of solutions found.
+        """
         solutions = []
         board = [-1] * self.num_queens
         board[0] = start_col
@@ -21,6 +37,13 @@ class EightQueens:
         return solutions
 
     def _solve(self, board, row, solutions):
+        """
+        Recursive helper function to find solutions for the 8 queens problem.
+        Args:
+            board (list): Current state of the chessboard.
+            row (int): Current row being explored.
+            solutions (list): List to store found solutions.
+        """
         if row == self.num_queens:
             solutions.append(list(board))
             return
@@ -32,6 +55,11 @@ class EightQueens:
                 board[row] = -1
 
 def plot_solution(solution):
+    """
+    Plots a graphical representation of the chessboard with queens placed according to the solution.
+    Args:
+        solution (list): List representing the positions of queens on the board.
+    """
     board_size = len(solution)
     board = [['.' for _ in range(board_size)] for _ in range(board_size)]
     for row, col in enumerate(solution):
@@ -47,11 +75,15 @@ if __name__ == "__main__":
     num_queens = 8
     solver = EightQueens(num_queens)
     
+    # Solve the problem in parallel using multiprocessing
     with multiprocessing.Pool() as pool:
         solutions = pool.map(solver.solve, range(num_queens))
 
+    # Flatten the list of solutions
     flattened_solutions = [sol for sublist in solutions for sol in sublist]
     print("Number of solutions:", len(flattened_solutions))
+    
+    # Print and plot each solution
     for solution in flattened_solutions:
         print(solution)
         plot_solution(solution)
