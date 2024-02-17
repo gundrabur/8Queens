@@ -1,5 +1,13 @@
+#!/usr/bin/env python3
+
+#
+# 17.02.2024
+# Christian Möller
+#
+ 
 import multiprocessing
 import matplotlib.pyplot as plt
+import time
 
 class EightQueens:
     def __init__(self, num_queens):
@@ -75,15 +83,21 @@ if __name__ == "__main__":
     num_queens = 8
     solver = EightQueens(num_queens)
     
+    start_time = time.time()  # Start timing
+
     # Solve the problem in parallel using multiprocessing
     with multiprocessing.Pool() as pool:
         solutions = pool.map(solver.solve, range(num_queens))
 
+    end_time = time.time()  # End timing
+    execution_time = end_time - start_time
+
     # Flatten the list of solutions
     flattened_solutions = [sol for sublist in solutions for sol in sublist]
     print("Number of solutions:", len(flattened_solutions))
+    print("Execution time:", execution_time, "seconds")
     
     # Print and plot each solution
     for solution in flattened_solutions:
         print(solution)
-        plot_solution(solution)
+        #plot_solution(solution)
