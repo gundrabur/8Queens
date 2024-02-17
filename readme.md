@@ -10,7 +10,7 @@ This Python program solves the classic 8 queens problem, which involves placing 
 ## Installation
 
 1. Clone the repository:
-   git clone https://github.com/yourusername/8-queens-solver.git
+   git clone https://github.com/gundrabur/8-queens-solver.git
    cd 8-queens-solver
 
 Install dependencies:
