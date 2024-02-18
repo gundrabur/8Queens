@@ -81,9 +81,8 @@ def plot_solution(solution):
 
 if __name__ == "__main__":
     num_queens = 8
-    # Define the maximum number of threads
-    # set to the numer of CPU cores, you may change that to a fixed number here
-    
+
+    # Run in a loop to compare the resulst of using 1 to all available CPU cores
     for max_threads in range(1, multiprocessing.cpu_count()+1):
 
         #max_threads = multiprocessing.cpu_count()
