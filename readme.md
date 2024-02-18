@@ -2,6 +2,7 @@
 
 This Python program solves the classic 8 queens problem, which involves placing 8 queens on an 8x8 chessboard in such a way that no two queens threaten each other. The program utilizes a parallelized backtracking algorithm to find all possible solutions to the problem.
 It is running in a loop and tests the results using from 1 to all available CPU Cores.
+Increase the number of queens to extend the rendering time significantly
 
 ## Requirements
 
